@@ -5,9 +5,10 @@ import Note from './Note';
 
 interface INotesProps{
     notes:NoteObject[]
+    deleteNote: (id: number) => void
 }
 
-const Notes:React.FC<INotesProps>= ({notes}) => {
+const Notes:React.FC<INotesProps>= ({notes, deleteNote}) => {
 
     return(
         <Box>
@@ -15,7 +16,7 @@ const Notes:React.FC<INotesProps>= ({notes}) => {
             <Box style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {
                     notes.map(note => (
-                        <Note key={note.id} note={note}  />
+                        <Note  note={note} deleteNote={deleteNote}  />
                     ))
                 }
             </Box>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {InputBase, Box, Button, styled, Typography} from '@mui/material'
 import { NoteObject } from '../models/Note'
+import { TITLE_LIMIT, DETAILS_LIMIT } from '../constants/Constant';
 import { v4 as uuid} from 'uuid';
 
 const Container = styled(Box)`
@@ -70,14 +71,23 @@ const CreateNote: React.FC<ICreateNoteProps> = ({ addNotes }) => {
               placeholder='Title'
               onChange={(e) => onValueChange(e)}
               name="title"
+              value={note.title}
+              inputProps={{
+                maxLength: TITLE_LIMIT
+              }}
             />
-            <Box component="span">30</Box>
+            <Box component="span">{note.title.length}/{TITLE_LIMIT}</Box>
             <InputBase 
               placeholder='Details'
               onChange={(e) => onValueChange(e)}
               name="details"
+              value={note.details}
+              inputProps={{
+                maxLength: DETAILS_LIMIT
+              }}
+
             />
-            <Box component="span">50</Box>
+            <Box component="span">{note.details.length}/{DETAILS_LIMIT}</Box>
             <InputBase
               type='color'
               defaultValue={'#F5F5F5'}
